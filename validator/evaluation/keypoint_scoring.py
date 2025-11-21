@@ -960,6 +960,10 @@ def summarize_scores(results):
     return {'inlier_ratio': inlier_ranges, 'avg_reprojection_error': error_ranges}
 
 def calculate_final_score_keypoints(keypoint_score, player_score, keypoint_stability, player_plausibility, mean_on_line , mean_inside, mean_scale,  scale_valid, kpts_stability_weighted_avg):
+
+    if round(mean_on_line, 2) <= 0:
+        return 0.0
+    
     # Weight the different components
     weights = {
         'keypoint_score': 0.25,
